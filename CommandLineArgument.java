@@ -5,7 +5,7 @@ import java.util.Objects;
 public enum CommandLineArgument {
     UNKNOWN("unknown"),
     DATA_TYPE("-dataType"),
-    SORT_INTEGERS("-sortingType");
+    SORTING_TYPE("-sortingType");
 
     private String argument;
 

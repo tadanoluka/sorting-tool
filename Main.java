@@ -1,8 +1,7 @@
 package sorting;
 
 
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main<K> {
     public static final DataType DEFAULT_DATA_TYPE = DataType.WORD;
@@ -20,12 +19,30 @@ public class Main<K> {
 
         ParsingStrategy parsingStrategy = null;
 
+        Map<String, String> argsMap = new HashMap<>();
+
         // Parsing args[] for arguments
-        if (args.length > 0) {
-            for (int i = 0; i < args.length; i++) {
-                switch (CommandLineArgument.getArgument(args[i])) {
-                    case DATA_TYPE -> dataType = DataType.getDataType(args[i + 1]);
-                    case SORT_INTEGERS -> sortingType = SortingType.getSortingType(args[i + 1]);
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].startsWith("-")) {
+                CommandLineArgument argument = CommandLineArgument.getArgument(args[i]);
+                switch (argument) {
+                    case UNKNOWN -> {
+                        System.out.printf("\"%s\" is not a valid parameter. It will be skipped\n".formatted(args[i]));
+                    }
+                    case SORTING_TYPE -> {
+                        if (i + 1 < args.length && !args[i + 1].startsWith("-")) {
+                            sortingType = SortingType.getSortingType(args[i + 1]);
+                        } else {
+                            System.out.println("No sorting type defined!");
+                        }
+                    }
+                    case DATA_TYPE -> {
+                        if (i + 1 < args.length && !args[i + 1].startsWith("-")) {
+                            dataType = DataType.getDataType(args[i + 1]);
+                        } else {
+                            System.out.println("No data type defined!");
+                        }
+                    }
                 }
             }
         }

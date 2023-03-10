@@ -18,8 +18,15 @@ public class LongParser implements ParsingStrategy {
         // Map (Long, Amount of times)
         TreeMap<Long, Integer> numberMap = new TreeMap<>();
 
-        while (scanner.hasNextLong()) {
-            long number = scanner.nextLong();
+        while (scanner.hasNext()) {
+            String userInput = scanner.next();
+            Long number;
+            try {
+                number = Long.parseLong(userInput);
+            } catch (NumberFormatException e) {
+                System.out.printf("\"%s\" is not a long. It will be skipped.\n".formatted(userInput));
+                continue;
+            }
             total += 1;
             numberMap.put(number, numberMap.getOrDefault(number, 0) + 1);
         }
