@@ -1,16 +1,19 @@
 package sorting;
 
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 public class LongParser implements ParsingStrategy {
     Scanner scanner;
+    PrintWriter printWriter;
     Map<Long, Integer> parsedMap;
     int total = 0;
 
-    public LongParser(Scanner scanner) {
+    public LongParser(Scanner scanner, PrintWriter printWriter) {
         this.scanner = scanner;
+        this.printWriter = printWriter;
     }
 
     @Override
@@ -24,7 +27,12 @@ public class LongParser implements ParsingStrategy {
             try {
                 number = Long.parseLong(userInput);
             } catch (NumberFormatException e) {
-                System.out.printf("\"%s\" is not a long. It will be skipped.\n".formatted(userInput));
+                String errorMessage = "\"%s\" is not a long. It will be skipped.\n".formatted(userInput);
+                if (printWriter != null) {
+                    printWriter.print(errorMessage);
+                } else {
+                    System.out.printf("\"%s\" is not a long. It will be skipped.\n".formatted(userInput));
+                }
                 continue;
             }
             total += 1;

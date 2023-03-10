@@ -3,32 +3,31 @@ package sorting;
 import java.util.Objects;
 
 public enum DataType {
+    INVALID("unknown", "unknown", " "),
     LONG("long", "numbers", " "),
     LINE("line", "lines", "\n"),
     WORD("word", "words", " ");
 
-    private String stringArgument;
-    private String namePlural;
-
-    // Kinda kludge, but it'll do
-    private String specialEnding;
+    private final String STRING_ARGUMENT;
+    private final String NAME_PLURAL;
+    private final String SPECIAL_ENDING;
 
     DataType(String stringArgument, String namePlural, String specialEnding) {
-        this.stringArgument = stringArgument;
-        this.namePlural = namePlural;
-        this.specialEnding = specialEnding;
+        this.STRING_ARGUMENT = stringArgument;
+        this.NAME_PLURAL = namePlural;
+        this.SPECIAL_ENDING = specialEnding;
     }
 
     public String getStringArgument() {
-        return stringArgument;
+        return STRING_ARGUMENT;
     }
 
     public String getNamePlural() {
-        return namePlural;
+        return NAME_PLURAL;
     }
 
     public String getSpecialEnding() {
-        return specialEnding;
+        return SPECIAL_ENDING;
     }
 
     public static DataType getDataType(String stringValue) {
@@ -37,6 +36,6 @@ public enum DataType {
                 return dataType;
             }
         }
-        return null;
+        return INVALID;
     }
 }

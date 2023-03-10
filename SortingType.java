@@ -3,17 +3,18 @@ package sorting;
 import java.util.Objects;
 
 public enum SortingType {
+    INVALID("unknown"),
     NATURAL("natural"),
     BY_COUNT("byCount");
 
-    String stringValue;
+    private final String STRING_VALUE;
 
     SortingType(String stringValue) {
-        this.stringValue = stringValue;
+        this.STRING_VALUE = stringValue;
     }
 
     public String getStringValue() {
-        return stringValue;
+        return STRING_VALUE;
     }
 
     public static SortingType getSortingType(String stringValue) {
@@ -22,6 +23,6 @@ public enum SortingType {
                 return sortingType;
             }
         }
-        return null;
+        return INVALID;
     }
 }

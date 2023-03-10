@@ -5,16 +5,18 @@ import java.util.Objects;
 public enum CommandLineArgument {
     UNKNOWN("unknown"),
     DATA_TYPE("-dataType"),
-    SORTING_TYPE("-sortingType");
+    SORTING_TYPE("-sortingType"),
+    INPUT_FILE("-inputFile"),
+    OUTPUT_FILE("-outputFile");
 
-    private String argument;
+    private final String ARGUMENT;
 
     CommandLineArgument(String argument) {
-        this.argument = argument;
+        this.ARGUMENT = argument;
     }
 
     private String getCodeName(){
-        return argument;
+        return ARGUMENT;
     }
 
     public static CommandLineArgument getArgument(String string) {
